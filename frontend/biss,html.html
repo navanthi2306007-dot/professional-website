@@ -1,0 +1,1511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProTech Solutions - Professional Website</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #4F46E5;
+            --secondary-color: #06B6D4;
+            --dark-bg: #0F172A;
+            --light-bg: #FFFFFF;
+            --text-dark: #1E293B;
+            --text-light: #F1F5F9;
+            --border-color: #E2E8F0;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --error: #EF4444;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--light-bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body.dark-mode {
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+        }
+
+        /* NAVIGATION */
+        .navbar {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: all 0.3s;
+        }
+
+        body.dark-mode .navbar {
+            background: rgba(15, 23, 42, 0.95);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-dark);
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        body.dark-mode .nav-menu a {
+            color: var(--text-light);
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-dark);
+        }
+
+        body.dark-mode .theme-toggle {
+            color: var(--text-light);
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(79, 70, 229, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--border-color);
+            color: var(--text-dark);
+        }
+
+        .btn-secondary:hover {
+            background: var(--text-dark);
+            color: white;
+        }
+
+        .language-select {
+            padding: 0.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 0.25rem;
+            cursor: pointer;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            animation: slideInDown 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 600px;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* FEATURES SECTION */
+        .features {
+            padding: 4rem 2rem;
+            background: var(--light-bg);
+        }
+
+        body.dark-mode .features {
+            background: #1E293B;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--primary-color);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: var(--light-bg);
+            padding: 2rem;
+            border-radius: 1rem;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s;
+            animation: slideUp 0.6s ease-out;
+        }
+
+        body.dark-mode .feature-card {
+            background: #0F172A;
+            border-color: #334155;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(79, 70, 229, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        /* SERVICES SECTION */
+        .services {
+            padding: 4rem 2rem;
+            background: #F8FAFC;
+        }
+
+        body.dark-mode .services {
+            background: #1E293B;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-item {
+            background: var(--light-bg);
+            padding: 1.5rem;
+            border-radius: 0.8rem;
+            border-left: 4px solid var(--primary-color);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        body.dark-mode .service-item {
+            background: #0F172A;
+        }
+
+        .service-item:hover {
+            box-shadow: 0 10px 30px rgba(79, 70, 229, 0.15);
+            transform: translateX(5px);
+        }
+
+        .service-item h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        /* TESTIMONIALS SECTION */
+        .testimonials {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, rgba(79, 70, 229, 0.1), rgba(6, 182, 212, 0.1));
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background: var(--light-bg);
+            padding: 2rem;
+            border-radius: 1rem;
+            border: 1px solid var(--border-color);
+        }
+
+        body.dark-mode .testimonial-card {
+            background: #0F172A;
+            border-color: #334155;
+        }
+
+        .testimonial-text {
+            margin-bottom: 1rem;
+            font-style: italic;
+            color: #666;
+        }
+
+        body.dark-mode .testimonial-text {
+            color: #CBD5E1;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .author-info h4 {
+            margin-bottom: 0.25rem;
+        }
+
+        .author-info p {
+            font-size: 0.9rem;
+            color: #999;
+        }
+
+        /* FAQ SECTION */
+        .faq {
+            padding: 4rem 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            overflow: hidden;
+        }
+
+        body.dark-mode .faq-item {
+            border-color: #334155;
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            background: #F8FAFC;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        body.dark-mode .faq-question {
+            background: #1E293B;
+            color: var(--text-light);
+        }
+
+        .faq-question:hover {
+            background: #E2E8F0;
+        }
+
+        body.dark-mode .faq-question:hover {
+            background: #334155;
+        }
+
+        .faq-toggle {
+            transition: transform 0.3s;
+            font-size: 1.5rem;
+        }
+
+        .faq-toggle.active {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 1.5rem;
+            display: none;
+            background: var(--light-bg);
+            color: #666;
+        }
+
+        body.dark-mode .faq-answer {
+            background: #0F172A;
+            color: #CBD5E1;
+        }
+
+        .faq-answer.active {
+            display: block;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        /* CONTACT FORM */
+        .contact {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+        }
+
+        .contact-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-message {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            display: none;
+        }
+
+        .form-message.success {
+            background: rgba(16, 185, 129, 0.2);
+            color: var(--text-light);
+            display: block;
+        }
+
+        .form-message.error {
+            background: rgba(239, 68, 68, 0.2);
+            color: var(--text-light);
+            display: block;
+        }
+
+        /* PRICING SECTION */
+        .pricing {
+            padding: 4rem 2rem;
+            background: #F8FAFC;
+        }
+
+        body.dark-mode .pricing {
+            background: #1E293B;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: var(--light-bg);
+            padding: 2rem;
+            border-radius: 1rem;
+            border: 2px solid var(--border-color);
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        body.dark-mode .pricing-card {
+            background: #0F172A;
+            border-color: #334155;
+        }
+
+        .pricing-card.featured {
+            border-color: var(--primary-color);
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(79, 70, 229, 0.3);
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .pricing-header {
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1rem;
+        }
+
+        .pricing-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .pricing-amount {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        body.dark-mode .pricing-amount {
+            color: var(--text-light);
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-features li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .pricing-features li:before {
+            content: "✓ ";
+            color: var(--success);
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        /* STATS SECTION */
+        .stats {
+            padding: 3rem 2rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* FOOTER */
+        .footer {
+            background: #0F172A;
+            color: var(--text-light);
+            padding: 3rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid #334155;
+            padding-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .footer-section a {
+            display: block;
+            color: #CBD5E1;
+            text-decoration: none;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--secondary-color);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-link:hover {
+            background: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+
+        /* ANIMATIONS */
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                max-height: 0;
+            }
+            to {
+                opacity: 1;
+                max-height: 500px;
+            }
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .hero-buttons .btn {
+                width: 100%;
+            }
+        }
+
+        /* LOADER */
+        .loader {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2000;
+        }
+
+        .loader.active {
+            display: block;
+        }
+
+        .spinner {
+            border: 4px solid rgba(79, 70, 229, 0.1);
+            border-top: 4px solid var(--primary-color);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* SCROLL ANIMATIONS */
+        .scroll-hidden {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .scroll-visible {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.6s ease-out;
+        }
+
+        /* TOOLTIP */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            border-bottom: 1px dotted var(--primary-color);
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 200px;
+            background-color: var(--primary-color);
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -100px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.85rem;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVIGATION -->
+    <nav class="navbar">
+        <a href="#home" class="logo">🚀 ProTech</a>
+        <ul class="nav-menu">
+            <li><a href="#features">Features</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="#faq">FAQ</a></li>
+        </ul>
+        <div class="nav-buttons">
+            <select class="language-select" id="languageSelect">
+                <option value="en">English</option>
+                <option value="es">Español</option>
+                <option value="fr">Français</option>
+                <option value="de">Deutsch</option>
+            </select>
+            <button class="theme-toggle" id="themeToggle">🌙</button>
+            <button class="btn btn-primary" onclick="document.getElementById('contactForm').scrollIntoView({behavior: 'smooth'})">Get Started</button>
+        </div>
+    </nav>
+
+    <!-- LOADER -->
+    <div class="loader" id="loader">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="home">
+        <h1 id="heroTitle">Professional Solutions for Modern Businesses</h1>
+        <p id="heroSubtitle">Cutting-edge technology, exceptional service, and proven results</p>
+        <div class="hero-buttons">
+            <button class="btn btn-primary" onclick="scrollToSection('#features')">Explore Features</button>
+            <button class="btn btn-secondary" onclick="scrollToSection('#contact')">Contact Us</button>
+        </div>
+    </section>
+
+    <!-- FEATURES SECTION -->
+    <section class="features" id="features">
+        <h2 class="section-title" id="featuresTitle">Key Features</h2>
+        <div class="features-grid">
+            <div class="feature-card scroll-hidden">
+                <div class="feature-icon">⚡</div>
+                <h3>Lightning Fast</h3>
+                <p>Optimized performance with load times under 1 second</p>
+            </div>
+            <div class="feature-card scroll-hidden">
+                <div class="feature-icon">🔒</div>
+                <h3>Secure & Safe</h3>
+                <p>Enterprise-grade security with 256-bit encryption</p>
+            </div>
+            <div class="feature-card scroll-hidden">
+                <div class="feature-icon">📱</div>
+                <h3>Fully Responsive</h3>
+                <p>Perfect experience on all devices and screen sizes</p>
+            </div>
+            <div class="feature-card scroll-hidden">
+                <div class="feature-icon">🌍</div>
+                <h3>Global Support</h3>
+                <p>24/7 customer support in multiple languages</p>
+            </div>
+            <div class="feature-card scroll-hidden">
+                <div class="feature-icon">📊</div>
+                <h3>Analytics</h3>
+                <p>Real-time insights and comprehensive reporting</p>
+            </div>
+            <div class="feature-card scroll-hidden">
+                <div class="feature-icon">🤝</div>
+                <h3>Easy Integration</h3>
+                <p>Seamlessly integrates with your existing tools</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATS SECTION -->
+    <section class="stats">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <h3 id="statClients">10K+</h3>
+                <p>Happy Clients</p>
+            </div>
+            <div class="stat-item">
+                <h3 id="statProjects">5K+</h3>
+                <p>Projects Completed</p>
+            </div>
+            <div class="stat-item">
+                <h3 id="statYears">12+</h3>
+                <p>Years Experience</p>
+            </div>
+            <div class="stat-item">
+                <h3 id="statUptime">99.9%</h3>
+                <p>Uptime Guarantee</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section class="services" id="services">
+        <h2 class="section-title" id="servicesTitle">Our Services</h2>
+        <div class="services-grid">
+            <div class="service-item scroll-hidden">
+                <h3>💻 Web Development</h3>
+                <p>Custom-built, scalable web applications using modern technologies and best practices.</p>
+            </div>
+            <div class="service-item scroll-hidden">
+                <h3>📱 Mobile Apps</h3>
+                <p>Native and cross-platform mobile applications for iOS and Android.</p>
+            </div>
+            <div class="service-item scroll-hidden">
+                <h3>🎨 UI/UX Design</h3>
+                <p>Beautiful, intuitive designs that engage users and drive conversions.</p>
+            </div>
+            <div class="service-item scroll-hidden">
+                <h3>☁️ Cloud Solutions</h3>
+                <p>Secure, scalable cloud infrastructure and deployment services.</p>
+            </div>
+            <div class="service-item scroll-hidden">
+                <h3>🔧 Consulting</h3>
+                <p>Expert technology consulting to optimize your digital strategy.</p>
+            </div>
+            <div class="service-item scroll-hidden">
+                <h3>🛡️ Security</h3>
+                <p>Comprehensive security audits and compliance solutions.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING SECTION -->
+    <section class="pricing" id="pricing">
+        <h2 class="section-title" id="pricingTitle">Pricing Plans</h2>
+        <div class="pricing-grid">
+            <div class="pricing-card scroll-hidden">
+                <div class="pricing-header">
+                    <div class="pricing-title">Starter</div>
+                    <div class="pricing-amount">$29<span style="font-size: 0.8rem;">/month</span></div>
+                </div>
+                <ul class="pricing-features">
+                    <li>Up to 1,000 requests/month</li>
+                    <li>Basic analytics</li>
+                    <li>Email support</li>
+                    <li>1 user account</li>
+                </ul>
+                <button class="btn btn-primary" style="width: 100%;">Choose Plan</button>
+            </div>
+
+            <div class="pricing-card featured scroll-hidden">
+                <div class="pricing-header">
+                    <div class="pricing-title">Professional</div>
+                    <div class="pricing-amount">$99<span style="font-size: 0.8rem;">/month</span></div>
+                </div>
+                <ul class="pricing-features">
+                    <li>Up to 50,000 requests/month</li>
+                    <li>Advanced analytics</li>
+                    <li>Priority support</li>
+                    <li>10 user accounts</li>
+                    <li>API access</li>
+                    <li>Custom integrations</li>
+                </ul>
+                <button class="btn btn-primary" style="width: 100%;">Choose Plan</button>
+            </div>
+
+            <div class="pricing-card scroll-hidden">
+                <div class="pricing-header">
+                    <div class="pricing-title">Enterprise</div>
+                    <div class="pricing-amount">Custom</div>
+                </div>
+                <ul class="pricing-features">
+                    <li>Unlimited requests</li>
+                    <li>Enterprise analytics</li>
+                    <li>24/7 dedicated support</li>
+                    <li>Unlimited user accounts</li>
+                    <li>Advanced API access</li>
+                    <li>Custom development</li>
+                </ul>
+                <button class="btn btn-primary" style="width: 100%;">Contact Sales</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS SECTION -->
+    <section class="testimonials" id="testimonials">
+        <h2 class="section-title" id="testimonialsTitle">What Our Clients Say</h2>
+        <div class="testimonials-grid">
+            <div class="testimonial-card scroll-hidden">
+                <div class="testimonial-text">"Outstanding service! The team understood our requirements perfectly and delivered beyond expectations."</div>
+                <div class="testimonial-author">
+                    <div class="author-avatar">JS</div>
+                    <div class="author-info">
+                        <h4>John Smith</h4>
+                        <p>CEO, Tech Corp</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card scroll-hidden">
+                <div class="testimonial-text">"Reliable, professional, and always available when we need them. Highly recommended!"</div>
+                <div class="testimonial-author">
+                    <div class="author-avatar">EM</div>
+                    <div class="author-info">
+                        <h4>Emma Miller</h4>
+                        <p>Manager, StartUp Inc</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card scroll-hidden">
+                <div class="testimonial-text">"The best investment we made this year. Their solutions increased our efficiency by 40%."</div>
+                <div class="testimonial-author">
+                    <div class="author-avatar">MJ</div>
+                    <div class="author-info">
+                        <h4>Michael Johnson</h4>
+                        <p>Director, Enterprise Ltd</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section class="faq" id="faq">
+        <h2 class="section-title" id="faqTitle">Frequently Asked Questions</h2>
+        
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                <span id="faqQ1">How does your service work?</span>
+                <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer" id="faqA1">Our service is straightforward: 1) Sign up for an account, 2) Choose your plan, 3) Configure your settings, 4) Integrate with your systems, and 5) Start using our platform. Our team is here to help at every step.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                <span id="faqQ2">What payment methods do you accept?</span>
+                <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer" id="faqA2">We accept all major credit cards, PayPal, bank transfers, and cryptocurrency. You can also pay annually for a 20% discount.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                <span id="faqQ3">Is there a free trial available?</span>
+                <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer" id="faqA3">Yes! We offer a 14-day free trial with full access to all features. No credit card required to get started.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                <span id="faqQ4">What is your uptime guarantee?</span>
+                <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer" id="faqA4">We guarantee 99.9% uptime with automatic backups and disaster recovery. If we fall below this, you receive service credits.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                <span id="faqQ5">Can I cancel anytime?</span>
+                <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer" id="faqA5">Absolutely! You can cancel your subscription anytime without penalties. We'll export all your data in standard formats.</div>
+        </div>
+    </section>
+
+    <!-- CONTACT FORM SECTION -->
+    <section class="contact" id="contact">
+        <div class="contact-container">
+            <h2 id="contactTitle">Get In Touch</h2>
+            <p style="text-align: center; margin-bottom: 2rem;">Ready to transform your business? Contact us today!</p>
+            <form id="contactForm" onsubmit="handleFormSubmit(event)">
+                <div class="form-group">
+                    <label for="name" id="labelName">Full Name</label>
+                    <input type="text" id="name" name="name" required placeholder="Your name">
+                </div>
+
+                <div class="form-group">
+                    <label for="email" id="labelEmail">Email Address</label>
+                    <input type="email" id="email" name="email" required placeholder="your@email.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="company" id="labelCompany">Company</label>
+                    <input type="text" id="company" name="company" placeholder="Your company">
+                </div>
+
+                <div class="form-group">
+                    <label for="message" id="labelMessage">Message</label>
+                    <textarea id="message" name="message" required placeholder="Tell us about your project..."></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1rem;">Send Message</button>
+                <div class="form-message" id="formMessage"></div>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Product</h4>
+                <a href="#features">Features</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#" onclick="scrollToSection('#contact')">Contact</a>
+                <a href="#">Documentation</a>
+            </div>
+
+            <div class="footer-section">
+                <h4>Company</h4>
+                <a href="#">About Us</a>
+                <a href="#">Blog</a>
+                <a href="#">Careers</a>
+                <a href="#">Press</a>
+            </div>
+
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Cookies</a>
+                <a href="#">Compliance</a>
+            </div>
+
+            <div class="footer-section">
+                <h4>Support</h4>
+                <a href="#">Help Center</a>
+                <a href="#">Status Page</a>
+                <a href="#">Feedback</a>
+                <a href="#">Report Bug</a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="social-links">
+                <a href="#" class="social-link" title="Facebook">f</a>
+                <a href="#" class="social-link" title="Twitter">𝕏</a>
+                <a href="#" class="social-link" title="LinkedIn">in</a>
+                <a href="#" class="social-link" title="Instagram">📷</a>
+            </div>
+            <p style="margin-top: 2rem;">© 2024 ProTech Solutions. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // ============================================
+        // THEME TOGGLE (Light/Dark Mode)
+        // ============================================
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        if (savedTheme === 'dark') {
+            body.classList.add('dark-mode');
+            themeToggle.textContent = '☀️';
+        }
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            const isDarkMode = body.classList.contains('dark-mode');
+            localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+            themeToggle.textContent = isDarkMode ? '☀️' : '🌙';
+        });
+
+        // ============================================
+        // LANGUAGE SUPPORT
+        // ============================================
+        const translations = {
+            en: {
+                heroTitle: 'Professional Solutions for Modern Businesses',
+                heroSubtitle: 'Cutting-edge technology, exceptional service, and proven results',
+                featuresTitle: 'Key Features',
+                servicesTitle: 'Our Services',
+                pricingTitle: 'Pricing Plans',
+                testimonialsTitle: 'What Our Clients Say',
+                faqTitle: 'Frequently Asked Questions',
+                contactTitle: 'Get In Touch',
+                statClients: '10K+',
+                statProjects: '5K+',
+                statYears: '12+',
+                statUptime: '99.9%',
+                labelName: 'Full Name',
+                labelEmail: 'Email Address',
+                labelCompany: 'Company',
+                labelMessage: 'Message',
+                faqQ1: 'How does your service work?',
+                faqQ2: 'What payment methods do you accept?',
+                faqQ3: 'Is there a free trial available?',
+                faqQ4: 'What is your uptime guarantee?',
+                faqQ5: 'Can I cancel anytime?'
+            },
+            es: {
+                heroTitle: 'Soluciones Profesionales para Negocios Modernos',
+                heroSubtitle: 'Tecnología de vanguardia, servicio excepcional y resultados comprobados',
+                featuresTitle: 'Características Principales',
+                servicesTitle: 'Nuestros Servicios',
+                pricingTitle: 'Planes de Precios',
+                testimonialsTitle: 'Lo Que Dicen Nuestros Clientes',
+                faqTitle: 'Preguntas Frecuentes',
+                contactTitle: 'Ponte en Contacto',
+                statClients: '10K+',
+                statProjects: '5K+',
+                statYears: '12+',
+                statUptime: '99.9%',
+                labelName: 'Nombre Completo',
+                labelEmail: 'Correo Electrónico',
+                labelCompany: 'Empresa',
+                labelMessage: 'Mensaje',
+                faqQ1: '¿Cómo funciona tu servicio?',
+                faqQ2: '¿Qué métodos de pago aceptas?',
+                faqQ3: '¿Hay una prueba gratuita disponible?',
+                faqQ4: '¿Cuál es tu garantía de tiempo de actividad?',
+                faqQ5: '¿Puedo cancelar en cualquier momento?'
+            },
+            fr: {
+                heroTitle: 'Solutions Professionnelles pour les Entreprises Modernes',
+                heroSubtitle: 'Technologie de pointe, service exceptionnel et résultats éprouvés',
+                featuresTitle: 'Caractéristiques Principales',
+                servicesTitle: 'Nos Services',
+                pricingTitle: 'Plans de Tarification',
+                testimonialsTitle: 'Ce Que Disent Nos Clients',
+                faqTitle: 'Questions Fréquemment Posées',
+                contactTitle: 'Nous Contacter',
+                statClients: '10K+',
+                statProjects: '5K+',
+                statYears: '12+',
+                statUptime: '99.9%',
+                labelName: 'Nom Complet',
+                labelEmail: 'Adresse E-mail',
+                labelCompany: 'Entreprise',
+                labelMessage: 'Message',
+                faqQ1: 'Comment fonctionne votre service?',
+                faqQ2: 'Quels modes de paiement acceptez-vous?',
+                faqQ3: 'Y a-t-il un essai gratuit disponible?',
+                faqQ4: 'Quelle est votre garantie de disponibilité?',
+                faqQ5: 'Puis-je annuler à tout moment?'
+            },
+            de: {
+                heroTitle: 'Professionelle Lösungen für Moderne Unternehmen',
+                heroSubtitle: 'Hochmoderne Technologie, außergewöhnlicher Service und bewährte Ergebnisse',
+                featuresTitle: 'Hauptmerkmale',
+                servicesTitle: 'Unsere Dienstleistungen',
+                pricingTitle: 'Preispläne',
+                testimonialsTitle: 'Was Unsere Kunden Sagen',
+                faqTitle: 'Häufig Gestellte Fragen',
+                contactTitle: 'Kontaktieren Sie Uns',
+                statClients: '10K+',
+                statProjects: '5K+',
+                statYears: '12+',
+                statUptime: '99.9%',
+                labelName: 'Vollständiger Name',
+                labelEmail: 'E-Mail-Adresse',
+                labelCompany: 'Unternehmen',
+                labelMessage: 'Nachricht',
+                faqQ1: 'Wie funktioniert Ihr Service?',
+                faqQ2: 'Welche Zahlungsmethoden akzeptieren Sie?',
+                faqQ3: 'Gibt es eine kostenlose Testversion?',
+                faqQ4: 'Was ist Ihre Verfügbarkeitsgarantie?',
+                faqQ5: 'Kann ich jederzeit kündigen?'
+            }
+        };
+
+        const languageSelect = document.getElementById('languageSelect');
+        const savedLanguage = localStorage.getItem('language') || 'en';
+        languageSelect.value = savedLanguage;
+        updateLanguage(savedLanguage);
+
+        languageSelect.addEventListener('change', (e) => {
+            const lang = e.target.value;
+            localStorage.setItem('language', lang);
+            updateLanguage(lang);
+        });
+
+        function updateLanguage(lang) {
+            const strings = translations[lang];
+            Object.keys(strings).forEach(key => {
+                const element = document.getElementById(key);
+                if (element) {
+                    element.textContent = strings[key];
+                }
+            });
+        }
+
+        // ============================================
+        // FORM SUBMISSION
+        // ============================================
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const loader = document.getElementById('loader');
+            const formMessage = document.getElementById('formMessage');
+            const form = event.target;
+
+            // Show loader
+            loader.classList.add('active');
+
+            // Simulate API call (Backend Integration Point)
+            setTimeout(() => {
+                // Get form data
+                const formData = {
+                    name: document.getElementById('name').value,
+                    email: document.getElementById('email').value,
+                    company: document.getElementById('company').value,
+                    message: document.getElementById('message').value,
+                    timestamp: new Date().toISOString()
+                };
+
+                console.log('Form Data to Send to Backend:', formData);
+
+                // Here you would send data to your backend:
+                // fetch('https://your-backend-api.com/api/contact', {
+                //     method: 'POST',
+                //     headers: { 'Content-Type': 'application/json' },
+                //     body: JSON.stringify(formData)
+                // })
+
+                loader.classList.remove('active');
+                
+                // Show success message
+                formMessage.className = 'form-message success';
+                formMessage.textContent = '✓ Message sent successfully! We\'ll contact you soon.';
+                form.reset();
+
+                // Clear message after 5 seconds
+                setTimeout(() => {
+                    formMessage.className = 'form-message';
+                }, 5000);
+            }, 1500);
+        }
+
+        // ============================================
+        // SCROLL ANIMATIONS
+        // ============================================
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.remove('scroll-hidden');
+                    entry.target.classList.add('scroll-visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-hidden').forEach(element => {
+            observer.observe(element);
+        });
+
+        // ============================================
+        // FAQ TOGGLE
+        // ============================================
+        function toggleFAQ(element) {
+            const answer = element.nextElementSibling;
+            const toggle = element.querySelector('.faq-toggle');
+
+            document.querySelectorAll('.faq-answer').forEach(a => {
+                if (a !== answer) {
+                    a.classList.remove('active');
+                }
+            });
+
+            document.querySelectorAll('.faq-toggle').forEach(t => {
+                if (t !== toggle) {
+                    t.classList.remove('active');
+                }
+            });
+
+            answer.classList.toggle('active');
+            toggle.classList.toggle('active');
+        }
+
+        // ============================================
+        // SCROLL TO SECTION
+        // ============================================
+        function scrollToSection(selector) {
+            document.querySelector(selector).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // ============================================
+        // SMOOTH SCROLL FOR ANCHOR LINKS
+        // ============================================
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && document.querySelector(href)) {
+                    e.preventDefault();
+                    document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // ============================================
+        // BACKEND INTEGRATION EXAMPLE
+        // ============================================
+        /*
+        // API Configuration
+        const API_BASE_URL = 'https://your-backend-api.com/api';
+
+        // Function to send data to backend
+        async function sendToBackend(endpoint, data) {
+            try {
+                const response = await fetch(`${API_BASE_URL}/${endpoint}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${getToken()}`
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                return await response.json();
+            } catch (error) {
+                console.error('Error:', error);
+                throw error;
+            }
+        }
+
+        // Get authentication token from localStorage
+        function getToken() {
+            return localStorage.getItem('auth_token');
+        }
+
+        // Example: Fetch user data from backend
+        async function getUserData(userId) {
+            try {
+                const response = await fetch(`${API_BASE_URL}/users/${userId}`, {
+                    headers: {
+                        'Authorization': `Bearer ${getToken()}`
+                    }
+                });
+                return await response.json();
+            } catch (error) {
+                console.error('Failed to fetch user data:', error);
+            }
+        }
+
+        // Database Integration - Example stored in localStorage
+        // In production, all data would be stored in a database
+        const Database = {
+            contacts: [],
+            users: [],
+            orders: [],
+
+            // Save contact message
+            saveContact(contact) {
+                const id = Date.now();
+                const data = { id, ...contact, createdAt: new Date().toISOString() };
+                this.contacts.push(data);
+                localStorage.setItem('contacts', JSON.stringify(this.contacts));
+                return data;
+            },
+
+            // Get all contacts
+            getContacts() {
+                return JSON.parse(localStorage.getItem('contacts')) || [];
+            },
+
+            // Save user
+            saveUser(user) {
+                const id = Date.now();
+                const data = { id, ...user, createdAt: new Date().toISOString() };
+                this.users.push(data);
+                localStorage.setItem('users', JSON.stringify(this.users));
+                return data;
+            },
+
+            // Get user by email
+            getUserByEmail(email) {
+                return this.users.find(user => user.email === email);
+            }
+        };
+        */
+
+        // ============================================
+        // UTILITY FUNCTIONS
+        // ============================================
+        
+        // Add loading animation
+        function showLoader() {
+            document.getElementById('loader').classList.add('active');
+        }
+
+        function hideLoader() {
+            document.getElementById('loader').classList.remove('active');
+        }
+
+        // Validate email
+        function isValidEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+
+        // Get URL parameters
+        function getURLParameter(name) {
+            return new URLSearchParams(window.location.search).get(name);
+        }
+
+        // ============================================
+        // PERFORMANCE OPTIMIZATION
+        // ============================================
+        
+        // Lazy load images
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        img.classList.remove('lazy');
+                        observer.unobserve(img);
+                    }
+                });
+            });
+
+            document.querySelectorAll('img[data-src]').forEach(img => imageObserver.observe(img));
+        }
+
+        // ============================================
+        // INITIALIZATION
+        // ============================================
+        
+        // Log that page loaded successfully
+        console.log('✅ Professional Website Loaded Successfully');
+        console.log('📊 Features: Dark Mode, Multi-Language, Form Handling, Scroll Animations');
+        console.log('🔌 Backend Integration Points: Ready for API connection');
+        console.log('💾 Database Ready: Contact form data can be sent to backend');
+
+        // Check if running on local environment
+        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+            console.log('🔧 Local Development Mode Enabled');
+        }
+    </script>
+</body>
+</html>

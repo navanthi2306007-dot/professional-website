@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Login Portal</title>
+  <style>
+    /* ===========================
+       GLOBAL STYLES
+    ============================ */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #ff6ec4, #7873f5, #4facfe, #43e97b);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: #fff;
+    }
+    @keyframes gradientBG {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+
+    /* ===========================
+       LOGIN BOX
+    ============================ */
+    .login-box {
+      background: rgba(0,0,0,0.6);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 0 25px rgba(255,255,255,0.5);
+      width: 400px;
+      text-align: center;
+      transform: perspective(1000px) rotateY(0deg);
+      transition: transform 0.8s ease;
+    }
+    .login-box:hover {
+      transform: perspective(1000px) rotateY(10deg);
+    }
+    .login-box h2 {
+      margin-bottom: 25px;
+      font-size: 28px;
+      letter-spacing: 1px;
+    }
+    .login-box input {
+      width: 90%;
+      padding: 12px;
+      margin: 12px 0;
+      border: none;
+      border-radius: 8px;
+      outline: none;
+      font-size: 16px;
+    }
+    .login-box button {
+      width: 95%;
+      padding: 14px;
+      margin-top: 20px;
+      background: #43e97b;
+      border: none;
+      border-radius: 8px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .login-box button:hover {
+      background: #4facfe;
+      color: #fff;
+    }
+
+    /* ===========================
+       DETAILS PAGE
+    ============================ */
+    .details-page {
+      display: none;
+      text-align: left;
+      background: rgba(0,0,0,0.7);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 0 25px rgba(255,255,255,0.5);
+      width: 600px;
+      color: #fff;
+      overflow-y: auto;
+      max-height: 90vh;
+    }
+    .details-page h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 30px;
+    }
+    .details-page p {
+      margin: 10px 0;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+    .member-card {
+      background: rgba(255,255,255,0.1);
+      padding: 20px;
+      margin: 15px 0;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(255,255,255,0.2);
+      transition: transform 0.3s ease;
+    }
+    .member-card:hover {
+      transform: scale(1.03);
+    }
+  </style>
+</head>
+<body>
+  <!-- LOGIN BOX -->
+  <div class="login-box" id="loginBox">
+    <h2>Student Login</h2>
+    <input type="text" id="rollNo" placeholder="Enter Roll Number">
+    <input type="text" id="name" placeholder="Enter Name">
+    <button onclick="login()">Login</button>
+  </div>
+
+  <!-- DETAILS PAGE -->
+  <div class="details-page" id="detailsPage">
+    <h2>Student Details</h2>
+    <div id="memberDetails"></div>
+  </div>
+
+  <script>
+    /* ===========================
+       STUDENT DATA
+    ============================ */
+    const students = [
+      {
+        rollNo: "732524IT031",
+        name: "NAVANTHIKA A",
+        contact: "7418498973",
+        email: "navavanthi2306007@gmail.com",
+        marks: "Approx. 85% above",
+        father: "AMSAN",
+        mother: "VIJIYALAKSHIMI",
+        qualification: "Pursuing B.Tech in Information Technology",
+        college: "Shree Venkateshwara Engineering College, Gobi"
+      },
+      {
+        rollNo: "732524IT032",
+        name: "ARUN K",
+        contact: "9876543210",
+        email: "arunk@example.com",
+        marks: "Approx. 82% above",
+        father: "KUMAR",
+        mother: "SUDHA",
+        qualification: "Pursuing B.Tech in Computer Science",
+        college: "Shree Venkateshwara Engineering College, Gobi"
+      },
+      {
+        rollNo: "732524IT033",
+        name: "PRIYA S",
+        contact: "9123456780",
+        email: "priyas@example.com",
+        marks: "Approx. 88% above",
+        father: "SURESH",
+        mother: "LATHA",
+        qualification: "Pursuing B.Tech in Electronics",
+        college: "Shree Venkateshwara Engineering College, Gobi"
+      }
+      // You can add more members here...
+    ];
+
+    /* ===========================
+       LOGIN FUNCTION
+    ============================ */
+    function login() {
+      const rollNo = document.getElementById("rollNo").value.trim();
+      const name = document.getElementById("name").value.trim().toLowerCase();
+
+      const student = students.find(
+        s => s.rollNo === rollNo && s.name.toLowerCase() === name
+      );
+
+      if (student) {
+        document.getElementById("loginBox").style.display = "none";
+        document.getElementById("detailsPage").style.display = "block";
+        displayDetails(student);
+      } else {
+        alert("Invalid Roll Number or Name. Please try again.");
+      }
+    }
+
+    /* ===========================
+       DISPLAY DETAILS
+    ============================ */
+    function displayDetails(student) {
+      const container = document.getElementById("memberDetails");
+      container.innerHTML = `
+        <div class="member-card">
+          <p><strong>Roll No:</strong> ${student.rollNo}</p>
+          <p><strong>Name:</strong> ${student.name}</p>
+          <p><strong>Contact No:</strong> ${student.contact}</p>
+          <p><strong>Email ID:</strong> ${student.email}</p>
+          <p><strong>11th & 12th Marks:</strong> ${student.marks}</p>
+          <p><strong>Father's Name:</strong> ${student.father}</p>
+          <p><strong>Mother's Name:</strong> ${student.mother}</p>
+          <p><strong>Qualification:</strong> ${student.qualification}</p>
+          <p><strong>College:</strong> ${student.college}</p>
+        </div>
+      `;
+    }
+  </script>
+</body>
+</html>
